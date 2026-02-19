@@ -64,7 +64,7 @@ class HandTrackerApp:
 
             gesture_animations = {
                 "i_love_you": self.animation_renderer.create_i_love_you_effect,
-                "peace": self.animation_renderer.create_peace_effect,
+                "peace": self.animation_renderer.create_i_love_you_effect,
                 "open_hand": self.animation_renderer.create_open_hand_effect,
                 "fist": self.animation_renderer.create_fist_effect,
                 "thumbs_up": self.animation_renderer.create_thumbs_up_effect,
@@ -75,7 +75,7 @@ class HandTrackerApp:
                 self.animation_active = True
                 self.gesture_active_time += 1
 
-                if gesture == "i_love_you" or gesture == "open_hand" or gesture == "fist" or gesture == "thumbs_up" or gesture == "one":
+                if gesture in ["i_love_you", "peace", "open_hand", "fist", "thumbs_up", "one"]:
                     intensity = self.animation_intensity
                 else:
                     intensity = min(self.animation_intensity, self.gesture_active_time / 30.0)
