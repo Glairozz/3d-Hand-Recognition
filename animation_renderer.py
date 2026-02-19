@@ -270,7 +270,7 @@ class AnimationRenderer:
             radius = r + int(10 * math.sin(time * 4))
             cv2.circle(frame, (cx, cy), radius, (255, 150, 0), 2)
 
-        frame = self._draw_hand_text(frame, "PROUD ON TOP!", w, h, (0, 200, 255), intensity)
+        frame = self._draw_hand_text(frame, "Inday Sara On Top!", w, h, (0, 200, 255), intensity)
 
         return frame
 
