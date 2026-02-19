@@ -72,12 +72,29 @@ class GestureRecognizer:
         middle_tip = landmarks[12]
         ring_tip = landmarks[16]
         pinky_tip = landmarks[20]
+        
+        index_pip = landmarks[6]
+        middle_pip = landmarks[10]
+        ring_pip = landmarks[14]
+        pinky_pip = landmarks[18]
 
         fingers_vertical = {
-            'index': index_tip['y'] < landmarks[6]['y'],
-            'middle': middle_tip['y'] < landmarks[10]['y'],
-            'ring': ring_tip['y'] < landmarks[14]['y'],
-            'pinky': pinky_tip['y'] < landmarks[18]['y']
+            'index': index_tip['y'] < index_pip['y'] - 0.005,
+            'middle': middle_tip['y'] < middle_pip['y'] - 0.005,
+            'ring': ring_tip['y'] < ring_pip['y'] - 0.005,
+            'pinky': pinky_tip['y'] < pinky_pip['y'] - 0.005
+        }
+        
+        index_mcp = landmarks[5]
+        middle_mcp = landmarks[9]
+        ring_mcp = landmarks[13]
+        pinky_mcp = landmarks[17]
+        
+        fingers_curled = {
+            'index': index_tip['y'] > index_mcp['y'],
+            'middle': middle_tip['y'] > middle_mcp['y'],
+            'ring': ring_tip['y'] > ring_mcp['y'],
+            'pinky': pinky_tip['y'] > pinky_mcp['y']
         }
 
         if (fingers_vertical['index'] and fingers_vertical['middle'] and 
@@ -96,10 +113,10 @@ class GestureRecognizer:
             fingers_vertical['ring'] and fingers_vertical['pinky'] and not fingers['thumb']):
             return "four"
 
-        if all(not fingers_vertical[k] for k in ['index', 'middle', 'ring', 'pinky']) and not fingers['thumb']:
+        if (all(fingers_curled[k] for k in ['index', 'middle', 'ring', 'pinky']) and not fingers['thumb']):
             return "fist"
 
-        if all(not fingers_vertical[k] for k in ['index', 'middle', 'ring', 'pinky']) and fingers['thumb']:
+        if (all(fingers_curled[k] for k in ['index', 'middle', 'ring', 'pinky']) and fingers['thumb']):
             return "thumbs_up"
 
         if (fingers_vertical['index'] and not fingers_vertical['middle'] and 
