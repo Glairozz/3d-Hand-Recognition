@@ -27,6 +27,8 @@ class CameraCapture:
 
     def _init_webcam(self):
         self.cap = cv2.VideoCapture(self.camera_index)
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 840)
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 680)
         if not self.cap.isOpened():
             raise RuntimeError(f"Cannot open camera at index {self.camera_index}")
 
