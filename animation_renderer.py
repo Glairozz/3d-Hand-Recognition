@@ -216,7 +216,7 @@ class AnimationRenderer:
         subtext = "PEACE SIGN"
         sub_scale = 1.0
         sub_size = cv2.getTextSize(subtext, font, sub_scale, 2)[0]
-        glow = tuple(int(200 * intensity), int(200 * intensity), int(200 * intensity))
+        glow = (int(200 * intensity), int(200 * intensity), int(200 * intensity))
         cv2.putText(frame, subtext, ((w - sub_size[0]) // 2, y + 70), 
                    font, sub_scale, glow, 3)
 
