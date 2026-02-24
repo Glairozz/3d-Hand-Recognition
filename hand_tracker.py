@@ -64,7 +64,7 @@ class HandTrackerApp:
 
             gesture_animations = {
                 "i_love_you": self.animation_renderer.create_i_love_you_effect,
-                "peace": self.animation_renderer.create_i_love_you_effect,
+                "peace": self.animation_renderer.create_i_love_you_effect,                  
                 "open_hand": self.animation_renderer.create_open_hand_effect,
                 "fist": self.animation_renderer.create_fist_effect,
                 "thumbs_up": self.animation_renderer.create_thumbs_up_effect,
