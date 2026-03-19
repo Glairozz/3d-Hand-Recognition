@@ -18,16 +18,16 @@ class AnimationRenderer:
     def _get_time(self):
         return cv2.getTickCount() / 2000000.0
 
-    def _smooth_hand_position(self, hand_pos, smooth_factor=0.15):
+    def _smooth_hand_position(self, hand_pos, smooth_factor=0.3):
         dx = hand_pos[0] - self.smooth_hand_pos[0]
         dy = hand_pos[1] - self.smooth_hand_pos[1]
         
-        self.velocity_x = self.velocity_x * 0.8 + dx * 0.2
-        self.velocity_y = self.velocity_y * 0.8 + dy * 0.2
+        self.velocity_x = self.velocity_x * 0.9 + dx * 0.1
+        self.velocity_y = self.velocity_y * 0.9 + dy * 0.1
         
         predicted_pos = (
-            self.smooth_hand_pos[0] + self.velocity_x * 0.5,
-            self.smooth_hand_pos[1] + self.velocity_y * 0.5
+            self.smooth_hand_pos[0] + self.velocity_x * 1.2,
+            self.smooth_hand_pos[1] + self.velocity_y * 1.2
         )
         
         self.smooth_hand_pos = (
